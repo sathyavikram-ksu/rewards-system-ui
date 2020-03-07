@@ -1,0 +1,7 @@
+{
+  "name": "rewards-system-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
