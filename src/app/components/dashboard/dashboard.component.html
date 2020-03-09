@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar debounce="500" placeholder="Search customers" (ionInput)="filterList($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-label *ngIf="customerListFilter && customerListFilter.length==0" color="primary">
+    <div style="padding: 20px;">No customer data found</div>
+  </ion-label>
+  
+  <ion-list *ngIf="customerListFilter && customerListFilter.length>0">
+    <ion-item routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerObj.id)}}" *ngFor="let customerObj of customerListFilter">
+      <ion-label color="dark">
+        <h2>{{customerObj.name}}</h2>
+        <h3>ID: {{customerObj.id}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-button routerLink="{{'/'+ROUTES.ADD_CUSTOMER_ROUTE}}" size="large" expand="block">
+    Add New Customer
+  </ion-button>
+</ion-footer>

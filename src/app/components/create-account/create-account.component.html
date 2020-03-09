@@ -1,0 +1,33 @@
+<ion-content>
+  <h1 class="app-text-center"><b>Account Details</b></h1>
+  <ion-card>
+    <ion-card-content>
+      <form class="form-signin highlight" [formGroup]="signUpForm">
+        <ion-item>
+          <ion-label position="stacked"><b>Name</b></ion-label>
+          <ion-input formControlName="name" type="text" placeholder="Enter your name" required autofocus></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"><b>Email</b></ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Enter your email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"><b>Password</b></ion-label>
+          <ion-input formControlName="password" type="password" placeholder="Enter password" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"><b>Re enter password</b></ion-label>
+          <ion-input formControlName="reEnterPassword" type="password" placeholder="Re enter password" required>
+          </ion-input>
+        </ion-item>
+        <div>
+          <br>
+          <ion-button (click)="createAccount()" size="large" expand="block">Save</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <div class="app-text-center">
+    <a routerLink="{{ROUTES.HOME_ROUTE}}"><b>Back to Login</b></a>
+  </div>
+</ion-content>

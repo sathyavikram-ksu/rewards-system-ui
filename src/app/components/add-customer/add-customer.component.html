@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Customer Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-chip *ngIf="!customerId" routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" outline color="primary">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      <ion-label><b>Back to dashboard</b></ion-label>
+    </ion-chip>
+
+    <ion-chip *ngIf="customerId" routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerId)}}"
+      outline color="primary">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      <ion-label><b>Back to customer details</b></ion-label>
+    </ion-chip>
+
+    <ion-chip (click)="onDelete()" *ngIf="customerId" class="ion-float-right" color="danger">
+      <ion-icon name="checkmark-circle"></ion-icon>
+      <ion-label><b>Delete customer</b></ion-label>
+    </ion-chip>
+  </div>
+
+  <form class="form-signin highlight" [formGroup]="addCustomerForm">
+    <ion-item>
+      <ion-label position="stacked"><b>Customer Name</b></ion-label>
+      <ion-input formControlName="name" type="text" placeholder="Enter customer name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked"><b>Customer Address</b></ion-label>
+      <ion-textarea rows="5" formControlName="address" type="text" placeholder="Enter customer address" required>
+      </ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked"><b>Customer Birth Date</b></ion-label>
+      <ion-datetime formControlName="birthDate" placeholder="Select customer birth date"></ion-datetime>
+    </ion-item>
+    <div>
+      <br>
+      <ion-button (click)="saveCustomer()" size="large" expand="block">Save</ion-button>
+    </div>
+  </form>
+</ion-content>

@@ -1,3 +1,25 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>{{name}}</ion-list-header>
+          <br>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" lines="none" detail="false">
+              <ion-icon name="home-outline"></ion-icon>
+              <ion-label>Dashboard</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="signOut()" lines="none" detail="false">
+              <ion-icon name="log-out-outline"></ion-icon>
+              <ion-label>Sign out</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

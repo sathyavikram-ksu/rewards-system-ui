@@ -1,0 +1,30 @@
+<ion-content class="app-padding-top">
+  <h1 class="app-text-center app-padding-top"><b>Ice Cream Rewards</b></h1>
+  <ion-card>
+    <ion-card-content>
+      <form class="form-signin highlight" [formGroup]="loginForm">
+        <ion-item>
+          <ion-label position="stacked"><b>Email</b></ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Enter email" required autofocus></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked"><b>Password</b></ion-label>
+          <ion-input formControlName="password" type="password" placeholder="Enter password" required></ion-input>
+        </ion-item>
+        <div>
+          <br>
+          <ion-button (click)="onSignIn()" size="large" expand="block">Sign in</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <div class="app-text-center">
+    <div>
+      <a routerLink="{{'/'+ROUTES.CREATE_ACCOUNT_ROUTE}}">Forgot password</a>
+    </div>
+    <div>
+      <br>
+      <a routerLink="{{'/'+ROUTES.CREATE_ACCOUNT_ROUTE}}">Create account</a>
+    </div>
+  </div>
+</ion-content>
