@@ -14,28 +14,29 @@
       <ion-label><b>Back to dashboard</b></ion-label>
     </ion-chip>
 
-    <ion-chip routerLink="{{'/'+ROUTES.EDIT_CUSTOMER_DETAILS_ROUTE.replace(':customerId',customer.id)}}" class="ion-float-right" color="secondary">
+    <ion-chip routerLink="{{'/'+ROUTES.EDIT_CUSTOMER_DETAILS_ROUTE.replace(':customerId',customer.id)}}"
+      class="ion-float-right" color="secondary">
       <ion-icon name="create-outline"></ion-icon>
       <ion-label><b>Edit customer</b></ion-label>
     </ion-chip>
   </div>
   <div *ngIf="customer">
-    <ion-card>
+    <ion-card color="light">
       <ion-card-header>
         <ion-card-title>
           {{customer.name}} - {{customer.id }}
         </ion-card-title>
         <ion-card-subtitle>{{customer.birthDate | date}}</ion-card-subtitle>
+        <ion-card-subtitle>{{customer.address}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-card-content>
-        {{customer.address}}
-      </ion-card-content>
     </ion-card>
+    <app-purchase-points></app-purchase-points>
+    <app-purchase-list></app-purchase-list>
   </div>
 </ion-content>
 
 <ion-footer>
-  <ion-button routerLink="{{'/'+ROUTES}}" size="large" color="danger" expand="block">
+  <ion-button routerLink="{{'/'+ROUTES.ADD_PURCHASE_ROUTE.replace(':customerId',customer.id)}}" size="large" color="danger" expand="block">
     Add Purchase
   </ion-button>
 </ion-footer>

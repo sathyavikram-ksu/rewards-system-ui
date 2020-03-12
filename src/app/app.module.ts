@@ -16,7 +16,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
-
+import { PurchaseListComponent } from './components/purchase/purchase-list/purchase-list.component';
+import { PurchaseAddComponent } from './components/purchase/purchase-add/purchase-add.component';
+import { PurchasePointsComponent } from './components/purchase/purchase-points/purchase-points.component';
 import { UserService } from './services/user.service';
 
 @NgModule({
@@ -26,7 +28,10 @@ import { UserService } from './services/user.service';
     DashboardComponent,
     CreateAccountComponent,
     AddCustomerComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    PurchaseListComponent,
+    PurchaseAddComponent,
+    PurchasePointsComponent
   ],
   entryComponents: [],
   imports: [
