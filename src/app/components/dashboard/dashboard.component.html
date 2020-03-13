@@ -20,7 +20,7 @@
     <ion-item routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerObj.id)}}" *ngFor="let customerObj of customerListFilter">
       <ion-label color="dark">
         <h2>{{customerObj.name}}</h2>
-        <h3>ID: {{customerObj.id}}</h3>
+        <h3>Customer id: {{customerObj.id}}</h3>
       </ion-label>
     </ion-item>
   </ion-list>

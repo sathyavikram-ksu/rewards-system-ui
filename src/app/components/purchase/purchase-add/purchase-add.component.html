@@ -35,7 +35,11 @@
       <ion-label position="stacked"><b>$ Amount</b></ion-label>
       <ion-input formControlName="amount" type="number" placeholder="Enter purchase $ amount" required autofocus>
       </ion-input>
-      <small><i>{{purchaseForm.controls.points.value}} points will be earned (1X)</i></small>
+      <small><i>
+          {{purchaseForm.controls.points.value}} points will be earned
+          <span *ngIf="!isGoldCustomer">(1X)</span>
+          <span *ngIf="isGoldCustomer">(2X)</span>
+        </i></small>
     </ion-item>
     <ion-item *ngIf="isPreOrder">
       <ion-label position="stacked"><b>Pick up date</b></ion-label>
@@ -45,11 +49,16 @@
     <ion-item *ngIf="isPreOrder && availableSlots.length>0">
       <ion-label position="stacked"><b>Select available pickup slot</b></ion-label>
       <ion-select interface="popover" formControlName="pickUpSlot">
-        <ion-select-option *ngFor="let slotNumber of availableSlots" value={{slotNumber}}>Slot {{slotNumber}}</ion-select-option>
+        <ion-select-option *ngFor="let slotNumber of availableSlots" value={{slotNumber}}>Slot {{slotNumber}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
   </form>
-
+  <div style="margin-left:20px;" *ngIf="!claimType">
+    <h2>Total Payment =
+      ${{isGoldCustomer?(purchaseForm.controls.amount.value*0.90).toFixed(2): purchaseForm.controls.amount.value}}
+    </h2>
+  </div>
 </ion-content>
 
 <ion-footer>

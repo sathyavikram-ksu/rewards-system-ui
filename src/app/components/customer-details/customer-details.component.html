@@ -31,7 +31,6 @@
         </ion-card-subtitle>
         <ion-card-subtitle>{{customer.birthDate | date}}</ion-card-subtitle>
         <ion-card-subtitle>{{customer.address}}</ion-card-subtitle>
-        <ion-card-subtitle color="secondary">GOLD customer</ion-card-subtitle>
         <app-purchase-points [purchaseList]="purchaseList"></app-purchase-points>
       </ion-card-header>
     </ion-card>
@@ -41,7 +40,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button routerLink="{{'/'+ROUTES.ADD_PURCHASE_ROUTE.replace(':customerId',customerId)}}" size="large"
+  <ion-button routerLink="{{'/'+ROUTES.ADD_PURCHASE_ROUTE.replace(':customerId',customerId).replace(':customerStatus',goldCustomer)}}" size="large"
     color="danger" expand="block">
     Add Purchase
   </ion-button>

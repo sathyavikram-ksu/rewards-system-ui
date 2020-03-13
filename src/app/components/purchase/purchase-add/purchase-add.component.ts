@@ -16,6 +16,7 @@ export class PurchaseAddComponent implements OnInit {
   ROUTES = ROUTES;
   customerId: string;
   isPreOrder = false;
+  isGoldCustomer = false;
   todayDate: string;
   nextWeekDate: string;
   availableSlots: number[] = [];
@@ -60,7 +61,7 @@ export class PurchaseAddComponent implements OnInit {
   ngOnInit() {
     this.purchaseForm.controls.amount.valueChanges.subscribe(amount => {
       this.purchaseForm.patchValue({
-        points: Math.floor(amount)
+        points: this.isGoldCustomer ? Math.floor(amount) * 2 : Math.floor(amount)
       });
     });
 
@@ -92,13 +93,14 @@ export class PurchaseAddComponent implements OnInit {
 
     this.customerId = this.route.snapshot.paramMap.get("customerId");
     this.claimType = this.route.snapshot.paramMap.get("claimType");
+    this.isGoldCustomer = this.route.snapshot.paramMap.get("customerStatus") == 'true' ? true : false;
   }
 
   claimReward() {
     this.purchaseForm.patchValue({
       isPreOrder: false,
-      purchaseType: this.claimType== 'MONTHLY_FREE_FOR_50'? PurchaseType.MONTHLY_FREE_FOR_50: PurchaseType.MONTHLY_FREE_FOR_GOLD,
-      amount:0,
+      purchaseType: this.claimType == 'MONTHLY_FREE_FOR_50' ? PurchaseType.MONTHLY_FREE_FOR_50 : PurchaseType.MONTHLY_FREE_FOR_GOLD,
+      amount: 0,
       points: 0
     });
     this.savePurchase();
@@ -109,7 +111,7 @@ export class PurchaseAddComponent implements OnInit {
       let loading = await this.loadingController.create({ message: 'Please wait...' });
       await loading.present();
       this.purchaseService
-        .save(new Purchase(this.purchaseForm, +this.customerId))
+        .save(new Purchase(this.purchaseForm, +this.customerId, this.isGoldCustomer))
         .subscribe(async () => {
           await loading.dismiss();
           const toast = await this.toastController.create({

@@ -26,7 +26,7 @@ export class Purchase {
     pickUpSlot: number;
     customer: Customer;
 
-    constructor(purchaseForm: FormGroup, customerId: number) {
+    constructor(purchaseForm: FormGroup, customerId: number, isGoldCustomer: boolean) {
         this.itemType = purchaseForm.controls.itemType.value;
         this.purchaseType = purchaseForm.controls.purchaseType.value;
         this.amount = purchaseForm.controls.amount.value;
@@ -34,6 +34,9 @@ export class Purchase {
         if (this.purchaseType == PurchaseType.PRE_ORDER) {
             this.pickUpDate = getPickUpDate(purchaseForm.controls.pickUpDate.value);
             this.pickUpSlot = +purchaseForm.controls.pickUpSlot.value;
+        }
+        if (isGoldCustomer) {
+            this.amount = +(this.amount * .9).toFixed(2)
         }
         this.customer = {
             id: customerId
