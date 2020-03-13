@@ -1,0 +1,33 @@
+<ion-card *ngIf="freeCountByMonth>0 || freeCountByGold>0">
+  <ion-card-header>
+    <ion-card-title>
+      Rewards
+      <ion-icon name="trophy-outline"></ion-icon>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          routerLink="{{'/'+ROUTES.CLAIM_PURCHASE_ROUTE.replace(':customerId',customerId).replace(':claimType','MONTHLY_FREE_FOR_50')}}"
+          *ngIf="freeCountByMonth>0">
+          <ion-badge color="primary">
+            <small>50 points/month</small>
+            <div class="badge-size">{{freeCountByMonth}}</div>
+            <small *ngIf="freeCountByMonth>0">Press to Claim</small>
+          </ion-badge>
+        </ion-col>
+        <ion-col
+          routerLink="{{'/'+ROUTES.CLAIM_PURCHASE_ROUTE.replace(':customerId',customerId).replace(':claimType','MONTHLY_FREE_FOR_GOLD')}}"
+          *ngIf="freeCountByGold>0">
+          <ion-badge color="warning">
+            <small>Gold customer</small>
+            <div class="badge-size">{{1}}</div>
+            <small>Press to Claim</small>
+          </ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

@@ -9,12 +9,12 @@
 
 <ion-content [fullscreen]="true">
   <div>
-    <ion-chip *ngIf="!customerId" routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" outline color="primary">
+    <ion-chip *ngIf="!customerId" routerDirection="back" routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" outline color="primary">
       <ion-icon name="arrow-back-circle-outline"></ion-icon>
       <ion-label><b>Back to dashboard</b></ion-label>
     </ion-chip>
 
-    <ion-chip *ngIf="customerId" routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerId)}}"
+    <ion-chip routerDirection="back" *ngIf="customerId" routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerId)}}"
       outline color="primary">
       <ion-icon name="arrow-back-circle-outline"></ion-icon>
       <ion-label><b>Back to customer details</b></ion-label>

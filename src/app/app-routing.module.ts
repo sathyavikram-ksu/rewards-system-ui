@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: ROUTES.ADD_CUSTOMER_ROUTE, component: AddCustomerComponent },
   { path: ROUTES.CUSTOMER_DETAILS_ROUTE, component: CustomerDetailsComponent },
   { path: ROUTES.EDIT_CUSTOMER_DETAILS_ROUTE, component: AddCustomerComponent },
-  { path: ROUTES.ADD_PURCHASE_ROUTE, component: PurchaseAddComponent }
+  { path: ROUTES.ADD_PURCHASE_ROUTE, component: PurchaseAddComponent },
+  { path: ROUTES.CLAIM_PURCHASE_ROUTE, component: PurchaseAddComponent }
 ];
 
 @NgModule({

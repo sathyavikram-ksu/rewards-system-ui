@@ -7,36 +7,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="customer">
   <div>
-    <ion-chip routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" outline color="primary">
+    <ion-chip routerDirection="back" routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" outline color="primary">
       <ion-icon name="arrow-back-circle-outline"></ion-icon>
       <ion-label><b>Back to dashboard</b></ion-label>
     </ion-chip>
 
-    <ion-chip routerLink="{{'/'+ROUTES.EDIT_CUSTOMER_DETAILS_ROUTE.replace(':customerId',customer.id)}}"
+    <ion-chip routerLink="{{'/'+ROUTES.EDIT_CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerId)}}"
       class="ion-float-right" color="secondary">
       <ion-icon name="create-outline"></ion-icon>
       <ion-label><b>Edit customer</b></ion-label>
     </ion-chip>
   </div>
-  <div *ngIf="customer">
+  <div>
     <ion-card color="light">
       <ion-card-header>
         <ion-card-title>
-          {{customer.name}} - {{customer.id }}
+          <span>{{customer.name}} - {{customer.id }}</span>
         </ion-card-title>
+        <ion-card-subtitle *ngIf="goldCustomer">
+          <ion-badge color="warning"><b>GOLD CUSTOMER</b></ion-badge>
+        </ion-card-subtitle>
         <ion-card-subtitle>{{customer.birthDate | date}}</ion-card-subtitle>
         <ion-card-subtitle>{{customer.address}}</ion-card-subtitle>
+        <ion-card-subtitle color="secondary">GOLD customer</ion-card-subtitle>
+        <app-purchase-points [purchaseList]="purchaseList"></app-purchase-points>
       </ion-card-header>
     </ion-card>
-    <app-purchase-points></app-purchase-points>
-    <app-purchase-list></app-purchase-list>
+    <app-purchase-rewards [customerId]="customerId" [purchaseList]="purchaseList"></app-purchase-rewards>
+    <app-purchase-list (onDelete)="onDelete($event)" [purchaseList]="purchaseList"></app-purchase-list>
   </div>
 </ion-content>
 
 <ion-footer>
-  <ion-button routerLink="{{'/'+ROUTES.ADD_PURCHASE_ROUTE.replace(':customerId',customer.id)}}" size="large" color="danger" expand="block">
+  <ion-button routerLink="{{'/'+ROUTES.ADD_PURCHASE_ROUTE.replace(':customerId',customerId)}}" size="large"
+    color="danger" expand="block">
     Add Purchase
   </ion-button>
 </ion-footer>

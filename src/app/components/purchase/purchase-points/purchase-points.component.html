@@ -1,3 +1,16 @@
-<p>
-  purchase-points works!
-</p>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-badge color="danger">
+        <small>Points this month</small>
+        <div class="badge-size">{{thisMonthPoints}}</div>
+      </ion-badge>
+    </ion-col>
+    <ion-col>
+      <ion-badge color="success">
+        <small>Total points</small>
+        <div class="badge-size">{{totalPoints}}</div>
+      </ion-badge>
+    </ion-col>
+  </ion-row>
+</ion-grid>

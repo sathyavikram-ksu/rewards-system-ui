@@ -1,62 +1,35 @@
-<ion-list>
+<ion-list *ngIf="purchaseList">
   <ion-list-header>
-    Recent Purchases
+    {{purchaseList.length}} Recent Purchases
   </ion-list-header>
-  <ion-item>
+  <ion-item *ngFor="let purchaseObj of purchaseList">
     <ion-avatar slot="start">
-      <img src="assets/yogut.png">
+      <img *ngIf="purchaseObj.itemType=='ICE_CREAM'" src="assets/ice-cream.png">
+      <img *ngIf="purchaseObj.itemType=='YOGURT'" src="assets/yogut.png">
     </ion-avatar>
     <ion-label>
-      <h2><b>$10.00</b> - <small>10 points earned</small></h2>
-      <p>12/10/2020 - Paid</p>
+      <h2><b>${{purchaseObj.amount}}</b> - <small>{{purchaseObj.points}} points earned</small></h2>
+      <p>
+        {{purchaseObj.createdAt | date: 'MMMM d, y, h:mm'}}
+      </p>
+      <p>
+        <span *ngIf="purchaseObj.purchaseType=='PRE_ORDER'">
+          <ion-badge color="secondary">
+            Pre order - {{purchaseObj.pickUpDate | date: 'MMMM d, y'}} - Slot {{purchaseObj.pickUpSlot}}
+          </ion-badge>
+        </span>
+        <span *ngIf="purchaseObj.purchaseType=='MONTHLY_FREE_FOR_50'">
+          <ion-badge color="primary">
+            Reward claimed - 50 points/month
+          </ion-badge>
+        </span>
+        <span *ngIf="purchaseObj.purchaseType=='MONTHLY_FREE_FOR_GOLD'">
+          <ion-badge color="warning">
+            Reward claimed - Gold customer
+          </ion-badge>
+        </span>
+      </p>
     </ion-label>
-  </ion-item>
-
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="assets/ice-cream.png">
-    </ion-avatar>
-    <ion-label>
-      <h2><b>$10.00</b> - <small>10 points earned</small></h2>
-      <p>12/10/2020 - Paid</p>
-    </ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="assets/yogut.png">
-    </ion-avatar>
-    <ion-label>
-      <h2><b>$10.00</b> - <small>10 points earned</small></h2>
-      <p>12/10/2020 - Paid</p>
-    </ion-label>
-  </ion-item>
-
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="assets/ice-cream.png">
-    </ion-avatar>
-    <ion-label>
-      <h2><b>$10.00</b> - <small>10 points earned</small></h2>
-      <p>12/10/2020 - Paid</p>
-    </ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="assets/yogut.png">
-    </ion-avatar>
-    <ion-label>
-      <h2><b>$10.00</b> - <small>10 points earned</small></h2>
-      <p>12/10/2020 - Paid</p>
-    </ion-label>
-  </ion-item>
-
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="assets/ice-cream.png">
-    </ion-avatar>
-    <ion-label>
-      <h2><b>$10.00</b> - <small>10 points earned</small></h2>
-      <p>12/10/2020 - Paid</p>
-    </ion-label>
+    <ion-icon (click)="delete(purchaseObj.id)" name="trash-outline"></ion-icon>
   </ion-item>
 </ion-list>

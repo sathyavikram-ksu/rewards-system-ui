@@ -9,15 +9,54 @@
 
 <ion-content [fullscreen]="true">
   <div>
-    <ion-chip routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerId)}}" outline color="primary">
+    <ion-chip routerDirection="back"
+      routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',customerId)}}" outline color="primary">
       <ion-icon name="arrow-back-circle-outline"></ion-icon>
       <ion-label><b>Back to customer details</b></ion-label>
     </ion-chip>
   </div>
+
+  <form class="highlight" [formGroup]="purchaseForm">
+    <ion-item *ngIf="!claimType">
+      <ion-label position="stacked"><b>Is this Pre order?</b></ion-label>
+      <ion-select interface="popover" formControlName="isPreOrder">
+        <ion-select-option [value]="false">No</ion-select-option>
+        <ion-select-option [value]="true">Yes</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked"><b>Item Type</b></ion-label>
+      <ion-select interface="popover" formControlName="itemType">
+        <ion-select-option value="ICE_CREAM">Ice cream</ion-select-option>
+        <ion-select-option *ngIf="!isPreOrder" value="YOGURT">Yogurt</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!claimType">
+      <ion-label position="stacked"><b>$ Amount</b></ion-label>
+      <ion-input formControlName="amount" type="number" placeholder="Enter purchase $ amount" required autofocus>
+      </ion-input>
+      <small><i>{{purchaseForm.controls.points.value}} points will be earned (1X)</i></small>
+    </ion-item>
+    <ion-item *ngIf="isPreOrder">
+      <ion-label position="stacked"><b>Pick up date</b></ion-label>
+      <ion-datetime [min]="todayDate" [max]="nextWeekDate" formControlName="pickUpDate">
+      </ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="isPreOrder && availableSlots.length>0">
+      <ion-label position="stacked"><b>Select available pickup slot</b></ion-label>
+      <ion-select interface="popover" formControlName="pickUpSlot">
+        <ion-select-option *ngFor="let slotNumber of availableSlots" value={{slotNumber}}>Slot {{slotNumber}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
+
 </ion-content>
 
 <ion-footer>
-  <ion-button routerLink="{{'/'+ROUTES.ADD_PURCHASE_ROUTE}}" size="large" color="danger" expand="block">
+  <ion-button *ngIf="!claimType" (click)="savePurchase()" size="large" color="success" expand="block">
     Save
+  </ion-button>
+  <ion-button *ngIf="claimType" (click)="claimReward()" size="large" color="success" expand="block">
+    Claim reward
   </ion-button>
 </ion-footer>

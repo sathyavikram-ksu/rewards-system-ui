@@ -19,7 +19,10 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
 import { PurchaseListComponent } from './components/purchase/purchase-list/purchase-list.component';
 import { PurchaseAddComponent } from './components/purchase/purchase-add/purchase-add.component';
 import { PurchasePointsComponent } from './components/purchase/purchase-points/purchase-points.component';
+import {PurchaseRewardsComponent} from './components/purchase/purchase-rewards/purchase-rewards.component';
+
 import { UserService } from './services/user.service';
+import { PurchaseService } from './services/purchase.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { UserService } from './services/user.service';
     CustomerDetailsComponent,
     PurchaseListComponent,
     PurchaseAddComponent,
-    PurchasePointsComponent
+    PurchasePointsComponent,
+    PurchaseRewardsComponent
   ],
   entryComponents: [],
   imports: [
@@ -47,7 +51,8 @@ import { UserService } from './services/user.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     httpInterceptorProviders,
-    UserService
+    UserService,
+    PurchaseService
   ],
   bootstrap: [AppComponent],
 })
