@@ -8,13 +8,19 @@
           <ion-menu-toggle auto-hide="false">
             <ion-item routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" lines="none" detail="false">
               <ion-icon name="home-outline"></ion-icon>
-              <ion-label>Dashboard</ion-label>
+              <ion-label class="label-space">Dashboard</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item routerLink="{{'/'+ROUTES.OWNER_REPORT_ROUTE}}" lines="none" detail="false">
+              <ion-icon name="book-outline"></ion-icon>
+              <ion-label class="label-space">Report</ion-label>
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
             <ion-item (click)="signOut()" lines="none" detail="false">
               <ion-icon name="log-out-outline"></ion-icon>
-              <ion-label>Sign out</ion-label>
+              <ion-label class="label-space">Sign out</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

@@ -19,7 +19,8 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
 import { PurchaseListComponent } from './components/purchase/purchase-list/purchase-list.component';
 import { PurchaseAddComponent } from './components/purchase/purchase-add/purchase-add.component';
 import { PurchasePointsComponent } from './components/purchase/purchase-points/purchase-points.component';
-import {PurchaseRewardsComponent} from './components/purchase/purchase-rewards/purchase-rewards.component';
+import { PurchaseRewardsComponent } from './components/purchase/purchase-rewards/purchase-rewards.component';
+import { OwnerReportComponent } from './components/owner-report/owner-report.component';
 
 import { UserService } from './services/user.service';
 import { PurchaseService } from './services/purchase.service';
@@ -35,7 +36,8 @@ import { PurchaseService } from './services/purchase.service';
     PurchaseListComponent,
     PurchaseAddComponent,
     PurchasePointsComponent,
-    PurchaseRewardsComponent
+    PurchaseRewardsComponent,
+    OwnerReportComponent
   ],
   entryComponents: [],
   imports: [

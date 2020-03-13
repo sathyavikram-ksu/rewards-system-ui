@@ -101,7 +101,8 @@ export class PurchaseAddComponent implements OnInit {
       isPreOrder: false,
       purchaseType: this.claimType == 'MONTHLY_FREE_FOR_50' ? PurchaseType.MONTHLY_FREE_FOR_50 : PurchaseType.MONTHLY_FREE_FOR_GOLD,
       amount: 0,
-      points: 0
+      points: 0,
+      itemType: this.purchaseForm.controls.itemType.value
     });
     this.savePurchase();
   }

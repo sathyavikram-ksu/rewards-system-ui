@@ -19,6 +19,10 @@ export class PurchaseService {
     return this.http.get<Purchase[]>(getUrl(this.URL_PREFIX) + purchaseId).toPromise();
   }
 
+  getPurchasesByDay(dayMilliSeconds: number) {
+    return this.http.get<Purchase[]>(getUrl(this.URL_PREFIX) + 'bydate/' + dayMilliSeconds).toPromise();
+  }
+
   getAvailableSlots(pickUpDate: number) {
     return this.http.get<number[]>(getUrl(this.URL_PREFIX) + 'available-slots/' + pickUpDate).toPromise();
   }

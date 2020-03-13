@@ -7,6 +7,7 @@ import { CreateAccountComponent } from './components/create-account/create-accou
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { PurchaseAddComponent } from './components/purchase/purchase-add/purchase-add.component';
+import { OwnerReportComponent } from './components/owner-report/owner-report.component';
 
 const routes: Routes = [
   { path: ROUTES.LOGIN_ROUTE, component: LoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: ROUTES.CUSTOMER_DETAILS_ROUTE, component: CustomerDetailsComponent },
   { path: ROUTES.EDIT_CUSTOMER_DETAILS_ROUTE, component: AddCustomerComponent },
   { path: ROUTES.ADD_PURCHASE_ROUTE, component: PurchaseAddComponent },
-  { path: ROUTES.CLAIM_PURCHASE_ROUTE, component: PurchaseAddComponent }
+  { path: ROUTES.CLAIM_PURCHASE_ROUTE, component: PurchaseAddComponent },
+  { path: ROUTES.OWNER_REPORT_ROUTE, component: OwnerReportComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-chip routerDirection="back" routerLink="{{'/'+ROUTES.DASHBOARD_ROUTE}}" outline color="primary">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      <ion-label><b>Back to dashboard</b></ion-label>
+    </ion-chip>
+  </div>
+  <div>
+    <ion-item>
+      <ion-label position="stacked"><b>Report date</b></ion-label>
+      <ion-datetime [(ngModel)]="reportDate" placeholder="Select date">
+      </ion-datetime>
+    </ion-item>
+    <div>
+      <ion-button (click)="generateReport()">Generate report</ion-button>
+    </div>
+
+    <ion-list *ngIf="purchaseList">
+      <ion-label *ngIf="purchaseList && purchaseList.length==0" color="primary">
+        <div style="padding: 20px;">No purchase data found for selected date</div>
+      </ion-label>
+      <ion-item *ngFor="let purchaseObj of purchaseList"
+        routerLink="{{'/'+ROUTES.CUSTOMER_DETAILS_ROUTE.replace(':customerId',purchaseObj.customer.id)}}">
+        <ion-avatar slot="start">
+          <img *ngIf="purchaseObj.itemType=='ICE_CREAM'" src="assets/ice-cream.png">
+          <img *ngIf="purchaseObj.itemType=='YOGURT'" src="assets/yogut.png">
+        </ion-avatar>
+        <ion-label>
+          <h2><b>{{purchaseObj.customer.name}}</b></h2>
+          <h2><b>${{purchaseObj.amount}}</b> - <small>{{purchaseObj.points}} points earned</small></h2>
+          <p>
+            {{purchaseObj.createdAt | date: 'MMMM d, y, h:mm'}}
+          </p>
+          <p>
+            <span *ngIf="purchaseObj.purchaseType=='PRE_ORDER'">
+              <ion-badge color="secondary">
+                Pre order - {{purchaseObj.pickUpDate | date: 'MMMM d, y'}} - Slot {{purchaseObj.pickUpSlot}}
+              </ion-badge>
+            </span>
+            <span *ngIf="purchaseObj.purchaseType=='MONTHLY_FREE_FOR_50'">
+              <ion-badge color="primary">
+                Reward claimed - 50 points/month
+              </ion-badge>
+            </span>
+            <span *ngIf="purchaseObj.purchaseType=='MONTHLY_FREE_FOR_GOLD'">
+              <ion-badge color="warning">
+                Reward claimed - Gold customer
+              </ion-badge>
+            </span>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
