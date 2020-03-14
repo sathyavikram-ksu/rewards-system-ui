@@ -1,6 +1,6 @@
 import { groupBy } from 'lodash';
 import { Purchase, PurchaseType } from '../models/purchase';
-export const HOST_URL = 'http://localhost:8080/';
+export const HOST_URL = 'http://ec2-13-59-107-142.us-east-2.compute.amazonaws.com/';
 export const ACCESS_TOKEN = 'accessToken';
 export const USER_NAME = 'userName';
 
